@@ -17,9 +17,9 @@ import (
 	"github.com/etherlabsio/healthcheck"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"github.com/xanderstrike/goplaxt/lib/config"
-	"github.com/xanderstrike/goplaxt/lib/store"
-	"github.com/xanderstrike/goplaxt/lib/trakt"
+	"github.com/morganzero/traxync/lib/config"
+	"github.com/morganzero/traxync/lib/store"
+	"github.com/morganzero/traxync/lib/trakt"
 	"github.com/xanderstrike/plexhooks"
 )
 
@@ -197,7 +197,7 @@ func main() {
 		data := AuthorizePage{
 			SelfRoot:   SelfRoot(r),
 			Authorized: false,
-			URL:        "https://plaxt.astandke.com/api?id=generate-your-own-silly",
+			URL:        "https://traxync.movio.pro/api?id=generate-your-own-silly",
 			ClientID:   config.TraktClientId,
 		}
 		tmpl.Execute(w, data)

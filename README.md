@@ -4,7 +4,7 @@ This tool should continue to work if you're not willing to pay for Trakt VIP, an
 
 # Plaxt
 
-[![CircleCI](https://circleci.com/gh/XanderStrike/goplaxt.svg?style=svg)](https://circleci.com/gh/XanderStrike/goplaxt) ![Docker Cloud Build](https://img.shields.io/docker/cloud/build/xanderstrike/goplaxt.svg)
+[![CircleCI](https://circleci.com/gh/XanderStrike/traxync.svg?style=svg)](https://circleci.com/gh/XanderStrike/traxync) ![Docker Cloud Build](https://img.shields.io/docker/cloud/build/xanderstrike/traxync.svg)
 
 Plex provides webhook integration for all Plex Pass subscribers, and users of their servers. A webhook is a request that the Plex application sends to third party services when a user takes an action, such as watching a movie or episode.
 
@@ -38,10 +38,10 @@ Once you have that, creating your container is a snap:
       -e TRAKT_SECRET=<trakt_secret> \
       -e ALLOWED_HOSTNAMES=<your public hostname(s) comma or space seperated> \
       -p 8000:8000 \
-      xanderstrike/goplaxt:latest
+      xanderstrike/traxync:latest
 
 If you are using a Raspberry Pi or other ARM based device, simply use
-`xanderstrike/goplaxt:latest-arm7`.
+`xanderstrike/traxync:latest-arm7`.
 
 Then go ahead and start it with:
 
@@ -58,7 +58,7 @@ services:
     - TRAKT_ID=<trakt_id>
     - TRAKT_SECRET=<trakt_secret>
     - ALLOWED_HOSTNAMES=<your public hostname(s) comma or space seperated>
-    image: xanderstrike/goplaxt
+    image: xanderstrike/traxync
     ports:
     - 8000:8000
     restart: unless-stopped

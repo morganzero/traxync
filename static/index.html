@@ -1,120 +1,136 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Plaxt</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      body {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 0 15px;
-        font-size: 22px;
-        line-height: 1.4;
-      }
-      a {
-        text-decoration: none;
-        color: #2874A6;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      input{
-        width:calc(100% - 1em);
-        font-size:24px;
-        padding:0.5em
-      }
-      pre {
-        font-size: 14px;
-      }
-      .button{
-        color:#fff;
-        background-color:#333;
-        font-size:40px;
-        padding:10px;
-        cursor:pointer
-      }
-      .button:hover {
-        background-color:#222
-      }
-      .button-group{
-        text-align:center;
-        padding:2em
-      }
-      .authform {
-        text-align: center;
-      }
-      .faded {
-        color: #aaa;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="header">
-      <h1>Plaxt</h1>
-    </div>
 
-    <p>Plex provides webhook integration for all Plex Pass subscribers, and users of their servers. A webhook is a request that the Plex application sends to third party services when a user takes an action, such as watching a movie or episode.</p>
-    <p>You can ask Plex to send these webhooks to this tool, which will then log those plays in your Trakt account.</p>
-    <p></p>
-    <p>Ready to get started? Simply enter your Plex username, and click the big friendly button.</p>
+<head>
+  <title>Traxync</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 15px;
+      font-size: 22px;
+      line-height: 1.4;
+      color: #333;
+      background-color: #F0F0F0;
+    }
 
-    {{if .Authorized}}
-      <div class="faded">
-        <h3>Step 1: Authorize with Trakt</h3>
-        <p>Nice.</p>
-      </div>
-      <div>
-    {{else}}
-      <h3>Step 1: Authorize with Trakt</h3>
-      <p>This will take you to trakt.tv, then they'll send you back here.</p>
-      <form class="authform js-authform" action="#">
-        <input class="js-username" placeholder="Plex Username"><br><br>
-        <span class="button js-authorize">Authorize</span>
-      </form>
-      <div class="faded">
+    a {
+      text-decoration: none;
+      color: #408080;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    input {
+      width: calc(100% - 1em);
+      font-size: 24px;
+      padding: 0.5em;
+    }
+
+    pre {
+      font-size: 14px;
+    }
+
+    .button {
+      color: #fff;
+      background-color: #333;
+      font-size: 40px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #222;
+    }
+
+    .button-group {
+      text-align: center;
+      padding: 2em;
+    }
+
+    .authform {
+      text-align: center;
+    }
+
+    .faded {
+      color: #aaa;
+    }
+
+    .header {
+      background-color: #A020F0;
+      padding: 10px;
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 0;
+      font-size: 48px;
+    }
+
+    h3 {
+      color: #408080;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Plaxt</h1>
+  </div>
+
+  <p>Plex provides webhook integration for Plex Pass subscribers and server users. Webhooks can be sent to this tool to
+    log plays in your Trakt account.</p>
+  <p>Enter your Plex username and click the big button.</p>
+
+  {{if .Authorized}}
+  <div class="faded">
+    <h3>Step 1: Authorize with Trakt</h3>
+    <p>Nice.</p>
+  </div>
+  {{else}}
+  <h3>Step 1: Authorize with Trakt</h3>
+  <p>This will take you to trakt.tv, then they'll send you back here.</p>
+  <form class="authform js-authform" action="#">
+    <input class="js-username" placeholder="Plex Username"><br><br>
+    <span class="button js-authorize">Authorize</span>
+  </form>
+  <div class="faded">
     {{end}}
 
-      <h3>Step 2: Configure Plex</h3>
+    <h3>Step 2: Configure Plex</h3>
+    <p>In the Plex settings, locate Webhooks. Add a webhook using the provided link below:</p>
+    <pre>{{.URL}}</pre>
+    <p>Each link is customized to the username you entered in step 1. You can add multiple webhooks so that shared users
+      can also log their plays!</p>
+    <h3>Step 3: Enjoy</h3>
+    <p>That's it! Your plays will now be logged regardless of the device or server you use.</p>
+  </div>
 
-      <p>In the Plex settings, find Webhooks. Add a webhook with the following link:</p>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-      <pre>
-        {{.URL}}
-      </pre>
+  <script>
+    // Authorization link template
+    var authorization_link = "https://trakt.tv/oauth/authorize?client_id={{.ClientID}}&redirect_uri={{.SelfRoot}}/authorize%3fusername=USERNAME&response_type=code";
 
-      <p>Each link is specific to the username you entered in step 1. You can add as many webhooks as you like though, so your shared users can scrobble their plays too!</p>
+    // Click event for authorization button
+    $('.js-authorize').click(function () {
+      var username = $('.js-username').val().toLowerCase();
+      window.location = authorization_link.replace('USERNAME', username);
+    });
 
-      <h3>Step 3: Enjoy</h3>
+    // Submit event for the authorization form
+    $('.js-authform').submit(function (e) {
+      var username = $('.js-username').val().toLowerCase();
+      window.location = authorization_link.replace('USERNAME', username);
+      return false;
+    });
+  </script>
+</body>
 
-      <p>You're done! Any device, any server, your plays will be logged.</p>
-
-    </div>
-
-    <h3>More Options</h3>
-
-    <p>This project is open source! See the code, along with instructions on hosting your own personal Plaxt on <a href="https://github.com/xanderstrike/goplaxt">GitHub</a>.</p>
-
-    <p>Shoutouts to <a href="https://trakt.tv">Trakt</a> for their great API, and to <a href="https://plex.tv/">Plex</a> for killing the plugin directory.</p>
-
-    <p>Made by <a href="https://astandke.com">me</a>.</p>
-
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-
-    <script>
-      var authorization_link = "https://trakt.tv/oauth/authorize?client_id={{.ClientID}}&redirect_uri={{.SelfRoot}}/authorize%3fusername=USERNAME&response_type=code";
-
-      $('.js-authorize').click(function() {
-        var username = $('.js-username').val().toLowerCase();
-        window.location = authorization_link.replace('USERNAME', username);
-      });
-
-      $('.js-authform').submit(function(e) {
-        var username = $('.js-username').val().toLowerCase();
-        window.location = authorization_link.replace('USERNAME', username);
-        return false;
-      });
-    </script>
-  </body>
 </html>

@@ -2,4 +2,4 @@
 .dockerignore
 Dockerfile*
 keystore/
-goplaxt
+traxync
