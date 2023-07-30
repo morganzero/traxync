@@ -8,7 +8,7 @@
   <style>
     body {
       /* Dark mode styles (default) */
-      background-color: #222222;
+      background-color: #44475a;
       /* Charcoal background color */
       color: #f8f8f8;
       /* Off white text color */
@@ -41,8 +41,8 @@
 
     h1,
     h3 {
-      color: #ff80d9;
-      /* Pink color for titles */
+      color: #8be9fd;
+      /* Cyan color for titles */
       margin-bottom: 10px;
     }
 
@@ -105,42 +105,44 @@
 <body>
   <header class="header">
     <img src="https://static.movio.pro/traxync_logo.png" alt="Traxync">
-    <h1>Traxync</h1>
   </header>
 
   <div class="main-content">
-    <p>Plex offers webhook integration for Plex Pass users and server users. Webhooks can log plays in your Trakt account.</p>
+    <p>Plex offers webhook integration for Plex Pass users and server users. Webhooks can log plays in your Trakt
+      account.</p>
     <p>Provide your Plex username and click the pink button.</p>
 
     {{if .Authorized}}
     <div class="faded">
-      <h3>1: Authorize with Trakt</h3>
+      <h3 style="color: #8be9fd;">1: Authorize with Trakt</h3>
       <p>Nice.</p>
     </div>
     {{else}}
 
     <div class="authform js-authform">
-      <h3>1: Trakt Authorization</h3>
-      <p>Start by authorizing with Trakt. Clicking the button will redirect you to trakt.tv. Once you grant permission, you'll
-      return to this page.</p>
+      <h3 style="color: #8be9fd;">1: Trakt Authorization</h3>
+      <p>Start by authorizing with Trakt. Clicking the button will redirect you to trakt.tv. Once you grant permission,
+        you'll
+        return to this page.</p>
       <label for="plexUsername">Plex Username:</label>
       <br>
       <input id="plexUsername" class="js-username" type="text" placeholder="Input username here...">
       <br>
-      <button class="button js-authorize">Authorize</button>
+      <button class="button js-authorize" style="background-color: #ff80d9;">Authorize</button>
     </div>
     {{end}}
 
     <div>
-      <h3>2: Plex Configuration</h3>
+      <h3 style="color: #8be9fd;">2: Plex Configuration</h3>
       <p>In Plex settings, locate the section labeled "Webhooks." Insert a webhook using the provided link below:</p>
       <pre>{{.URL}}</pre>
-      <p>Each link is personalized to your entered username in step 1. Add multiple webhooks to enable shared users to log their
-      plays too!</p>
+      <p>Each link is personalized to your entered username in step 1. Add multiple webhooks to enable shared users to
+        log their
+        plays too!</p>
     </div>
 
     <div>
-      <h3>Congratulations!</h3>
+      <h3 style="color: #8be9fd;">Congratulations!</h3>
       <p>From now on, your plays will be automatically logged, regardless of the device or server you use.</p>
     </div>
   </div>
