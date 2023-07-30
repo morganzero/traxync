@@ -11,7 +11,7 @@
       background-color: #0e1015;
       /* Dark background color */
       color: #f8f8f8;
-      /* Light text color */
+      /* Off white text color */
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
@@ -19,14 +19,6 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-    }
-
-    .light-mode {
-      /* Light mode styles */
-      background-color: #f8f8f8;
-      /* Light background color */
-      color: #444;
-      /* Dark text color for better visibility */
     }
 
     .terminal-box {
@@ -43,36 +35,35 @@
     /* New colors for Traxync theme */
     header {
       background-color: #8be9fd;
-      /* Light Blue */
+      /* Cyan color for header */
       color: #f8f8f8;
-      /* Light text color */
+      /* Off white text color */
       padding: 10px;
       text-align: center;
+      border-radius: 8px 8px 0 0;
     }
 
     main {
-      color: #ff73a6;
-      /* Pink */
+      color: #f8f8f8;
+      /* Off white text color */
       text-align: center;
       margin-top: 20px;
+      padding: 10px;
+      border-radius: 0 0 8px 8px;
     }
 
-    h1 {
-      margin: 0;
-      padding: 0;
-      font-size: 36px;
-    }
-
+    h1,
     h3 {
       color: #8be9fd;
-      /* Light Blue */
-      font-size: 24px;
+      /* Cyan color */
+      font-size: 36px;
+      margin-bottom: 10px;
     }
 
     a {
       text-decoration: none;
       color: #8be9fd;
-      /* Light Blue */
+      /* Cyan color */
     }
 
     a:hover {
@@ -85,16 +76,24 @@
     }
 
     .authform label {
-      color: #ff73a6;
-      /* Pink */
+      color: #8be9fd;
+      /* Cyan color */
       font-size: 18px;
     }
 
+    .authform input {
+      width: 300px;
+      /* Wider input field */
+      font-size: 20px;
+      /* Bigger font size */
+      padding: 10px;
+    }
+
     .button {
-      background-color: #8be9fd;
-      /* Light Blue */
+      background-color: #ff80d9;
+      /* Pink color */
       color: #f8f8f8;
-      /* Light text color */
+      /* Off white text color */
       padding: 12px 24px;
       border: none;
       border-radius: 4px;
@@ -105,39 +104,25 @@
     }
 
     .button:hover {
-      background-color: #83aef3;
-      /* Darker shade of Light Blue on hover */
+      background-color: #ff5ca9;
+      /* Darker shade of pink on hover */
     }
 
     pre {
-      color: #ff73a6;
-      /* Pink */
+      color: #ff80d9;
+      /* Pink color */
       white-space: pre-wrap;
       overflow-y: scroll;
       max-height: 400px;
       font-size: 18px;
     }
 
-    .toggle-button {
-      background-color: #8be9fd;
-      /* Light Blue */
-      color: #f8f8f8;
-      /* Light text color */
-      padding: 12px 24px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 20px;
+    .box {
+      border: 2px solid #8be9fd;
+      /* Cyan color */
+      padding: 10px;
+      border-radius: 8px;
       margin-top: 20px;
-      transition: background-color 0.3s ease;
-      position: fixed;
-      bottom: 80px;
-      /* Center bottom */
-    }
-
-    .toggle-button:hover {
-      background-color: #83aef3;
-      /* Darker shade of Light Blue on hover */
     }
   </style>
 </head>
@@ -160,18 +145,23 @@
     </div>
     {{else}}
 
-    <h3>Step 1: Trakt Authorization</h3>
-    <p>Begin by authorizing with Trakt. Clicking the button will redirect you to trakt.tv, and once you grant
-      permission,
-      you'll be brought back to this page.</p>
-    <form class="authform js-authform" action="#">
-      <label for="plexUsername">Plex Username:</label>
-      <input id="plexUsername" class="js-username" type="text" placeholder="Enter your Plex Username"><br><br>
-      <button class="button js-authorize">Authorize</button>
-    </form>
-    <div class="faded">
-      {{end}}
+    <div class="box">
+      <h3>Step 1: Trakt Authorization</h3>
+      <p>Begin by authorizing with Trakt. Clicking the button will redirect you to trakt.tv, and once you grant
+        permission,
+        you'll be brought back to this page.</p>
+      <form class="authform js-authform" action="#">
+        <label for="plexUsername">Plex Username:</label>
+        <br>
+        <input id="plexUsername" class="js-username" type="text" placeholder="Enter your Plex Username">
+        <br>
+        <br>
+        <button class="button js-authorize">Authorize</button>
+      </form>
+    </div>
+    {{end}}
 
+    <div class="box">
       <h3>Step 2: Plex Configuration</h3>
       <p>In the Plex settings, find the section labeled "Webhooks." Insert a webhook using the provided link
         below:</p>
@@ -179,19 +169,16 @@
       <p>Each link is personalized to the username you entered in step 1. Feel free to add multiple webhooks,
         allowing shared
         users to log their plays as well!</p>
+    </div>
+
+    <div class="box">
       <h3>Step 3: Enjoy</h3>
       <p>Congratulations! From this point forward, your plays will be automatically logged, regardless of the
         device or server
         you are using.</p>
+    </div>
   </main>
 
-  <button class="toggle-button" onclick="toggleLightMode()">Toggle Light Mode</button>
-
-  <script>
-    function toggleLightMode() {
-      document.body.classList.toggle("light-mode");
-    }
-  </script>
 </body>
 
 </html>
