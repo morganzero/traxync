@@ -8,88 +8,68 @@
   <style>
     body {
       /* Dark mode styles (default) */
-      background-color: #000000;
-      /* Black background color */
+      background-color: #222222;
+      /* Charcoal background color */
       color: #f8f8f8;
       /* Off white text color */
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       height: 100vh;
       margin: 0;
+      padding: 20px;
     }
 
-    .terminal-box {
-      background-color: #44475a;
-      /* Darker shade of cyan for terminal box background */
-      border: 2px solid #44475a;
-      /* Outlined cyan color for border */
-      border-radius: 8px;
-      padding: 16px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      width: 80%;
-      max-width: 500px;
-      margin: 20px auto 0;
-      word-wrap: break-word;
-    }
-
-    /* New colors for Traxync theme */
     header {
-      background-color: #44475a;
-      /* Darker shade of cyan for header background */
-      color: #f8f8f8;
-      /* Off white text color */
-      padding: 10px;
-      text-align: center;
-      border-radius: 8px 8px 0 0;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
     }
 
-    main {
-      color: #f8f8f8;
-      /* Off white text color */
-      text-align: center;
-      margin-top: 20px;
-      padding: 10px;
-      border-radius: 0 0 8px 8px;
+    header img {
+      width: 80px;
+      /* Logo size */
+      margin-right: 10px;
+    }
+
+    .main-content {
+      max-width: 800px;
+      /* Limit width for content */
+      width: 100%;
     }
 
     h1,
     h3 {
-      color: #44575a;
-      /* Cyan color */
-      font-size: 36px;
+      color: #ff80d9;
+      /* Pink color for titles */
       margin-bottom: 10px;
     }
 
-    a {
-      text-decoration: none;
-      color: #44575a;
-      /* Cyan color */
+    p {
+      margin-bottom: 20px;
     }
 
-    a:hover {
-      text-decoration: underline;
+    a {
+      color: #ff80d9;
+      /* Pink color for links */
     }
 
     .authform {
-      text-align: center;
       margin-top: 20px;
     }
 
     .authform label {
-      color: #44575a;
-      /* Cyan color */
       font-size: 18px;
     }
 
     .authform input {
-      width: 300px;
-      /* Wider input field */
+      width: 100%;
+      /* Full width input field */
       font-size: 20px;
       /* Bigger font size */
       padding: 10px;
+      margin-bottom: 10px;
     }
 
     .button {
@@ -102,7 +82,6 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 20px;
-      margin-top: 20px;
       transition: background-color 0.3s ease;
     }
 
@@ -118,19 +97,7 @@
       overflow-y: scroll;
       max-height: 400px;
       font-size: 18px;
-    }
-
-    .box {
-      background-color: #44475a;
-      /* Darker shade of cyan for box background */
-      color: #f8f8f8;
-      /* Off white text color */
-      border: 2px solid #686e90;
-      /* Outlined cyan color for border */
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 20px;
-      word-wrap: break-word;
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -138,55 +105,45 @@
 <body>
   <header class="header">
     <img src="https://static.movio.pro/traxync_logo.png" alt="Traxync">
+    <h1>Traxync</h1>
   </header>
 
-  <main>
-    <p>Plex provides webhook integration for Plex Pass subscribers and server users. Webhooks can be sent to this
-      tool to
-      log plays in your Trakt account.</p>
-    <p>Enter your Plex username and click the big button.</p>
+  <div class="main-content">
+    <p>Plex offers webhook integration for Plex Pass users and server users. Webhooks can log plays in your Trakt account.</p>
+    <p>Provide your Plex username and click the pink button.</p>
 
     {{if .Authorized}}
     <div class="faded">
-      <h3>Step 1: Authorize with Trakt</h3>
+      <h3>1: Authorize with Trakt</h3>
       <p>Nice.</p>
     </div>
     {{else}}
 
-    <div class="box">
-      <h3>Step 1: Trakt Authorization</h3>
-      <p>Begin by authorizing with Trakt. Clicking the button will redirect you to trakt.tv, and once you grant
-        permission,
-        you'll be brought back to this page.</p>
-      <form class="authform js-authform" action="#">
-        <label for="plexUsername">Plex Username:</label>
-        <br>
-        <input id="plexUsername" class="js-username" type="text" placeholder="Enter your Plex Username">
-        <br>
-        <br>
-        <button class="button js-authorize">Authorize</button>
-      </form>
+    <div class="authform js-authform">
+      <h3>1: Trakt Authorization</h3>
+      <p>Start by authorizing with Trakt. Clicking the button will redirect you to trakt.tv. Once you grant permission, you'll
+      return to this page.</p>
+      <label for="plexUsername">Plex Username:</label>
+      <br>
+      <input id="plexUsername" class="js-username" type="text" placeholder="Input username here...">
+      <br>
+      <button class="button js-authorize">Authorize</button>
     </div>
     {{end}}
 
-    <div class="box">
-      <h3>Step 2: Plex Configuration</h3>
-      <p>In the Plex settings, find the section labeled "Webhooks." Insert a webhook using the provided link
-        below:</p>
+    <div>
+      <h3>2: Plex Configuration</h3>
+      <p>In Plex settings, locate the section labeled "Webhooks." Insert a webhook using the provided link below:</p>
       <pre>{{.URL}}</pre>
-      <p>Each link is personalized to the username you entered in step 1. Feel free to add multiple webhooks,
-        allowing shared
-        users to log their plays as well!</p>
+      <p>Each link is personalized to your entered username in step 1. Add multiple webhooks to enable shared users to log their
+      plays too!</p>
     </div>
 
-    <div class="box">
-      <h3>Step 3: Enjoy</h3>
-      <p>Congratulations! From this point forward, your plays will be automatically logged, regardless of the
-        device or server
-        you are using.</p>
+    <div>
+      <h3>Congratulations!</h3>
+      <p>From now on, your plays will be automatically logged, regardless of the device or server you use.</p>
     </div>
-  </main>
-
+  </div>
 </body>
 
 </html>
