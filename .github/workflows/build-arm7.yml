@@ -29,4 +29,4 @@ jobs:
           context: .
           file: Dockerfile-arm7
           push: true
-          tags: sushibox/traxync:latest-arm7
+          tags: sushibox/traktsync:latest-arm7

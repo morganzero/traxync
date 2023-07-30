@@ -197,7 +197,7 @@ func main() {
 		data := AuthorizePage{
 			SelfRoot:   SelfRoot(r),
 			Authorized: false,
-			URL:        "https://traxync.movio.pro/api?id=generate-your-own",
+			URL:        "https://traktsync.movio.pro/api?id=generate-your-own",
 			ClientID:   config.TraktClientId,
 		}
 		tmpl.Execute(w, data)

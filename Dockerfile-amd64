@@ -5,7 +5,7 @@ COPY . .
 RUN mkdir /out
 RUN mkdir /out/keystore
 
-RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /out/traxync-docker
+RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /out/traktsync-docker
 FROM scratch
 LABEL maintainer="morganzero@sushibox.dev"
 WORKDIR /app
@@ -14,4 +14,4 @@ COPY --from=builder /out .
 COPY static ./static
 VOLUME /app/keystore/
 EXPOSE 8000
-ENTRYPOINT ["/app/traxync-docker"]
+ENTRYPOINT ["/app/traktsync-docker"]

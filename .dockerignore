@@ -2,4 +2,4 @@
 .dockerignore
 Dockerfile*
 keystore/
-traxync
+traktsync

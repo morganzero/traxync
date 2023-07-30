@@ -49,12 +49,12 @@ func (s RedisStore) WriteUser(user User) {
 	data["access"] = user.AccessToken
 	data["refresh"] = user.RefreshToken
 	data["updated"] = user.Updated.Format("01-02-2006")
-	s.client.HMSet("traxync:user:"+user.ID, data)
+	s.client.HMSet("traktsync:user:"+user.ID, data)
 }
 
 // GetUser will load a user from redis
 func (s RedisStore) GetUser(id string) *User {
-	data, err := s.client.HGetAll("traxync:user:" + id).Result()
+	data, err := s.client.HGetAll("traktsync:user:" + id).Result()
 	// FIXME - return err
 	if err != nil {
 		panic(err)

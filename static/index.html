@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traxync</title>
+    <title>TraktSync</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -13,15 +13,13 @@
 
 <body class="bg-gray-800 text-gray-700 font-sans min-h-screen py-12 px-4">
     <header class="flex justify-center mb-8">
-        <img src="https://static.movio.pro/traxync_logo.png" alt="Traxync" class="w-24"> <!-- 20% larger logo -->
+        <img src="https://static.movio.pro/movio_logo.png" alt="traktsync" class="w-24"> <!-- 20% larger logo -->
     </header>
 
     <div class="container mx-auto max-w-2xl bg-white p-8 rounded-lg shadow-lg"> <!-- Container div -->
         <div class="authform js-authform mb-8"> <!-- Added 'js-authform' class -->
-            <h3 class="text-2xl text-black-500 mb-4 font-semibold">Trakt Sync</h3>
-            <p class="mb-4 text-lg">Plex offers webhook integration for Plex Pass users and server users. Webhooks can
-                log
-                plays in your Trakt account.</p>
+            <h3 class="text-2xl text-black-500 mb-4 font-semibold">Plex Trakt Sync</h3>
+            <p class="mb-4 text-lg">Plex offers webhook integration for Plex Pass users and server users. Webhooks can log plays in your Trakt account.</p>
             <p class="mb-6 text-lg">Provide your Plex username and click the pink button.</p>
 
             {{if .Authorized}}
@@ -32,9 +30,7 @@
             {{else}}
             <div class="mb-8">
                 <h3 class="text-2xl text-blue-500 mb-4 font-semibold">1: Trakt Authorization</h3>
-                <p class="text-lg mb-4">Start by authorizing with Trakt. Clicking the button will redirect you to
-                    trakt.tv. Once
-                    you grant permission, you'll return to this page.</p>
+                <p class="text-lg mb-4">Start by authorizing with Trakt. Clicking the button will redirect you to trakt.tv. Once you grant permission, you'll return to this page.</p>
                 <label for="plexUsername" class="block text-lg mb-2 font-semibold">Plex Username:</label>
                 <input id="plexUsername" class="js-username w-full p-3 mb-4 border rounded-lg" type="text"
                     placeholder="Input username here...">
@@ -45,13 +41,9 @@
 
             <div class="mb-8">
                 <h3 class="text-2xl text-blue-500 mb-4 font-semibold">2: Plex Configuration</h3>
-                <p class="text-lg mb-4">In Plex settings, locate the section labeled "Webhooks." Insert a webhook using
-                    the
-                    provided link below:</p>
+                <p class="text-lg mb-4">In Plex settings, locate the section labeled "Webhooks." Insert a webhook using the provided link below:</p>
                 <pre class="bg-gray-800 text-pink-400 p-4 rounded-lg mb-4 text-lg">{{.URL}}</pre>
-                <p class="text-lg">Each link is personalized to your entered username in Step 1. Add multiple webhooks
-                    to enable
-                    shared users to log their plays too!</p>
+                <p class="text-lg">Each link is personalized to your entered username in Step 1. Add multiple webhooks to enable shared users to log their plays too!</p>
             </div>
 
             <div>
