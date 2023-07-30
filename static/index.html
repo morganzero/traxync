@@ -3,90 +3,150 @@
 
 <head>
   <title>Traxync</title>
-  <link rel="icon" type="image/x-icon" href="path/to/your/favicon.ico">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 15px;
-      font-size: 22px;
-      line-height: 1.4;
-      color: #333;
-      background-color: #F0F0F0;
+      /* Dark mode styles (default) */
+      background-color: #0e1015;
+      /* Dark background color */
+      color: #f8f8f8;
+      /* Light text color */
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
-  
-    a {
-      text-decoration: none;
-      color: #408080;
+
+    .light-mode {
+      /* Light mode styles */
+      background-color: #f8f8f8;
+      /* Light background color */
+      color: #222;
+      /* Slightly darker text color for better visibility */
     }
-  
-    a:hover {
-      text-decoration: underline;
+
+    .terminal-box {
+      background-color: rgba(30, 34, 44, 0.8);
+      /* Transparent terminal-like box with dark background */
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      width: 80%;
+      max-width: 600px;
+      margin: 20px auto 0;
     }
-  
-    input {
-      width: calc(100% - 1em);
-      font-size: 24px;
-      padding: 0.5em;
-    }
-  
-    pre {
-      font-size: 14px;
-    }
-  
-    .button {
-      color: #fff;
-      background-color: #333;
-      font-size: 40px;
-      padding: 10px;
-      cursor: pointer;
-    }
-  
-    .button:hover {
+
+    /* New colors for Traxync theme */
+    header {
       background-color: #222;
-    }
-  
-    .button-group {
-      text-align: center;
-      padding: 2em;
-    }
-  
-    .authform {
-      text-align: center;
-    }
-  
-    .faded {
-      color: #aaa;
-    }
-  
-    .header {
-      background-color: #A020F0;
+      /* Dark blue background for header */
+      color: #f8f8f8;
+      /* Light text color */
       padding: 10px;
       text-align: center;
-      color: #fff;
     }
-  
+
+    main {
+      color: #b48ead;
+      /* Purple accent */
+      text-align: center;
+      margin-top: 20px;
+    }
+
     h1 {
       margin: 0;
       padding: 0;
       font-size: 48px;
     }
-  
+
     h3 {
-      color: #408080;
+      color: #64b5f6;
+      /* Blue accent */
+    }
+
+    a {
+      text-decoration: none;
+      color: #64b5f6;
+      /* Blue accent */
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .authform {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .authform label {
+      color: #64b5f6;
+      /* Blue accent */
+    }
+
+    .button {
+      background-color: #64b5f6;
+      /* Blue accent */
+      color: #f8f8f8;
+      /* Light text color */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #4a8ac9;
+      /* Darker shade of blue on hover */
+    }
+
+    pre {
+      color: #b48ead;
+      /* Purple accent */
+      white-space: pre-wrap;
+      overflow-y: scroll;
+      max-height: 400px;
+    }
+
+    .toggle-button {
+      background-color: #64b5f6;
+      /* Blue accent */
+      color: #f8f8f8;
+      /* Light text color */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+      position: fixed;
+      bottom: 80px;
+      /* Center bottom */
+    }
+
+    .toggle-button:hover {
+      background-color: #4a8ac9;
+      /* Darker shade of blue on hover */
     }
   </style>
 </head>
 
 <body>
-<header class="header">
-  <img src="path/to/your/logo.png" alt="Traxync Logo">
-</header>
+  <header class="header">
+    <h1>Traxync</h1>
+  </header>
 
   <main>
-    <p>Plex provides webhook integration for Plex Pass subscribers and server users. Webhooks can be sent to this tool
-      to
+    <p>Plex provides webhook integration for Plex Pass subscribers and server users. Webhooks can be sent to this
+      tool to
       log plays in your Trakt account.</p>
     <p>Enter your Plex username and click the big button.</p>
 
@@ -110,36 +170,24 @@
       {{end}}
 
       <h3>Step 2: Plex Configuration</h3>
-      <p>In the Plex settings, find the section labeled "Webhooks." Insert a webhook using the provided link below:</p>
+      <p>In the Plex settings, find the section labeled "Webhooks." Insert a webhook using the provided link
+        below:</p>
       <pre>{{.URL}}</pre>
-      <p>Each link is personalized to the username you entered in step 1. Feel free to add multiple webhooks, allowing
-        shared
+      <p>Each link is personalized to the username you entered in step 1. Feel free to add multiple webhooks,
+        allowing shared
         users to log their plays as well!</p>
       <h3>Step 3: Enjoy</h3>
-      <p>Congratulations! From this point forward, your plays will be automatically logged, regardless of the device or
-        server
+      <p>Congratulations! From this point forward, your plays will be automatically logged, regardless of the
+        device or server
         you are using.</p>
   </main>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <button class="toggle-button" onclick="toggleLightMode()">Toggle Light Mode</button>
 
   <script>
-    // Authorization link template
-    var authorization_link = "https://trakt.tv/oauth/authorize?client_id={{.ClientID}}&redirect_uri={{.SelfRoot}}/authorize%3fusername=USERNAME&response_type=code";
-
-    // Click event for authorization button
-    $('.js-authorize').click(function () {
-      var username = $('.js-username').val().toLowerCase();
-      window.location = authorization_link.replace('USERNAME', username);
-    });
-
-    // Submit event for the authorization form
-    $('.js-authform').submit(function (e) {
-      var username = $('.js-username').val().toLowerCase();
-      window.location = authorization_link.replace('USERNAME', username);
-      return false;
-    });
+    function toggleLightMode() {
+      document.body.classList.toggle("light-mode");
+    }
   </script>
 </body>
 
