@@ -8,8 +8,8 @@
   <style>
     body {
       /* Dark mode styles (default) */
-      background-color: #0e1015;
-      /* Dark background color */
+      background-color: #000000;
+      /* Black background color */
       color: #f8f8f8;
       /* Off white text color */
       font-family: Arial, sans-serif;
@@ -22,20 +22,23 @@
     }
 
     .terminal-box {
-      background-color: rgba(68, 71, 90, 0.8);
-      /* Transparent terminal-like box with dark background */
+      background-color: #44475a;
+      /* Darker shade of cyan for terminal box background */
+      border: 2px solid #44475a;
+      /* Outlined cyan color for border */
       border-radius: 8px;
       padding: 16px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
       width: 80%;
-      max-width: 600px;
+      max-width: 500px;
       margin: 20px auto 0;
+      word-wrap: break-word;
     }
 
     /* New colors for Traxync theme */
     header {
-      background-color: #8be9fd;
-      /* Cyan color for header */
+      background-color: #44475a;
+      /* Darker shade of cyan for header background */
       color: #f8f8f8;
       /* Off white text color */
       padding: 10px;
@@ -54,7 +57,7 @@
 
     h1,
     h3 {
-      color: #8be9fd;
+      color: #44575a;
       /* Cyan color */
       font-size: 36px;
       margin-bottom: 10px;
@@ -62,7 +65,7 @@
 
     a {
       text-decoration: none;
-      color: #8be9fd;
+      color: #44575a;
       /* Cyan color */
     }
 
@@ -76,7 +79,7 @@
     }
 
     .authform label {
-      color: #8be9fd;
+      color: #44575a;
       /* Cyan color */
       font-size: 18px;
     }
@@ -118,18 +121,23 @@
     }
 
     .box {
-      border: 2px solid #8be9fd;
-      /* Cyan color */
+      background-color: #44475a;
+      /* Darker shade of cyan for box background */
+      color: #f8f8f8;
+      /* Off white text color */
+      border: 2px solid #686e90;
+      /* Outlined cyan color for border */
       padding: 10px;
       border-radius: 8px;
       margin-top: 20px;
+      word-wrap: break-word;
     }
   </style>
 </head>
 
 <body>
   <header class="header">
-    <h1>Traxync</h1>
+    <img src="https://static.movio.pro/traxync_logo.png" alt="Traxync">
   </header>
 
   <main>
