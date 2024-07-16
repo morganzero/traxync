@@ -13,7 +13,7 @@
 
 <body class="bg-gray-800 text-gray-700 font-sans min-h-screen py-12 px-4">
     <header class="flex justify-center mb-8">
-        <img src="https://static.movio.pro/movio_logo.png" alt="traktsync" class="w-24"> <!-- 20% larger logo -->
+        <img src="https://static.movio.pro/logo.png" alt="TraXync" class="w-24"> <!-- 20% larger logo -->
     </header>
 
     <div class="container mx-auto max-w-2xl bg-white p-8 rounded-lg shadow-lg"> <!-- Container div -->
@@ -56,7 +56,10 @@
 
     <script>
         // Authorization link template
-        var authorization_link = "https://trakt.tv/oauth/authorize?client_id={{.ClientID}}&redirect_uri={{.SelfRoot}}/authorize%3fusername=USERNAME&response_type=code";
+        var authorization_link = "
+        https://trakt.tv/oauth/authorize?client_id={{.ClientID}}&redirect_uri={{.SelfRoot}}/authorize%3fusername=USERNAME&response_type=code";
+        https://trakt.tv/oauth/authorize?client_id=d143c98d3855adb175c9e1233df1c52057501516f8ae300b27619a34d604232a&redirect_uri=https://traxync.sushibox.dev/authorize%3fusername=laurenceibrahim&response_type=code
+        https://trakt.tv/oauth/authorize?client_id=c9a8a36c476dcfe72b46b8be2237e8151486af90dac6b94548c89329f2a190c2&redirect_uri=https://plaxt.astandke.com/authorize%3fusername=laurenceibrahim&response_type=code
         // Click event for authorization button
         $('.js-authorize').click(function () {
             var username = $('.js-username').val().toLowerCase();
